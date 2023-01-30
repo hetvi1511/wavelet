@@ -1,12 +1,11 @@
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
 
 class Handler implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
 
-    ArrayList<String> str = new ArrayList<String>();
+    String str = new String("");
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
@@ -22,8 +21,8 @@ class Handler implements URLHandler {
 
                 if (parameters[0].equals("s")) {
 
-                    str.add(parameters[1]);
-                    return String.format("%s \n", parameters[1]);
+                    str = str + parameters[1] + "\n";
+                    return str;
                 }
             }
             return "404 Not Found!";
